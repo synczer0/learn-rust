@@ -17,12 +17,18 @@ fn func_name() {
     println!("{}", x);
 }
 
+fn take_ownership(stra: i32) {
+    println!("{}", stra);
+
+}
+
 fn main() {
 
-    let mut s = String::from("Hello");
+   let s = String::from("Hello");
+    let x = 10;
+   take_ownership(x);
 
-    s.push_str(" World!");
-    s.remove(3);
-    println!("{}", s);
+   println!("{}", x);
+    
 
 }

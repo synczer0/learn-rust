@@ -11,7 +11,7 @@ fn passValue(x: i32) => i32 {
     x + 10    
 }
 
-// void function that does not have return type
+// void function that does not have return type or does not return anything
 fn test() {
     println!("Hello");
     let z = 1;
@@ -24,6 +24,11 @@ fn test() {
     } else {
         println!("NGHEKK");
     }
+}
+
+fn return_multiple_values_swap(s: String, z: String) -> (String, String) {
+    // return 2 values with the return type of string
+    (z, s)
 }
 
 

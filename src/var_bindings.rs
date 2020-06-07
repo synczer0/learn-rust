@@ -41,6 +41,13 @@ fn var_bindings() {
     // Every variable must initialize before using them
     let x: i32;
 
+    // Tuples bindings
+    // Tuples are immutable type, that does not changed on runtime
+    let rec = (30, 40);
+    // to access the tuple index we might use the . with number after it (.0 or .1 and so on)
+    rec.0 // access 30 value
+    rec.1 // access 40 value
+
 
     /*
     The double colon (::) is an operator that allows us to namespace this

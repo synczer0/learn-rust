@@ -134,7 +134,123 @@
 // another example
 {
     // References and Barrowing
-    
+    {
+        let s1 = String::from("hello");
+
+        let len = calculate_length(&s1); // &s1 referers or point to the value of s1, it will not be dropped 
+                                         // when reference goes out of scope
+
+        change(&s1); // This will result an error because it is immutable
+        
+        change(&mut s1); // This will run because it is mutable
+
+        println!("The length of '{}' is {}.", s1, len);
+
+
+
+        // The benefit of having this restriction is that Rust can prevent data races
+        // at compile time. A data race is similar to a race condition and happens when
+        // these three behaviors occur:
+        // • Two or more pointers access the same data at the same time.
+        // • At least one of the pointers is being used to write to the data.
+        // • There’s no mechanism being used to synchronize access to the data.
+
+        // mutable references have one big restriction: you can have only one
+        // mutable reference to a particular piece of data in a particular scope.
+        let mut s = String::from("hello");
+        let r1 = &mut s; // first mutable, ok it can be used since its only 1 mutable
+        let r2 = &mut s; // second mutable, this is not ok, you have now 2 mutable which is against the rules
+        
+        println!("{}, {}", r1, r2); // can't execute this code will fail
+
+
+
+    }
+
+    // immutable reference
+    fn change(some_string: &String) {
+        some_string.push_str(", add") // cannot be add because it is immutable while borrowing
+    }
+
+    // mutable reference
+    fn change(some_string: &String) {
+        some_string.push_str(", add") // cannot be add because it is immutable while borrowing
+    }
+
+    fn calculate_length(s: &String) -> usize {
+        s.len()
+    }// Here, s goes out of scope. But because it does not have ownership of
+    // what it refers to, nothing happens.
 
     
+}
+
+// another example
+{
+    // dangling reference
+
+    
+    fn main() {
+        let reference_to_nothing = dangle();
+    }
+
+    // this function's return type contains a borrowed value, but there is
+    // no value for it to be borrowed from.
+    fn dangle() -> &String { // dangle returns a reference to a String
+        let s = String::from("hello"); // s is a new String
+        &s // we return a reference to the String, s
+    } // Here, s goes out of scope, and is dropped. Its memory goes away.
+      // Danger!!!!
+
+}
+
+// another example
+{
+    // Slice
+    let s = String::from("Hello World");
+    // .. is a ranged syntax
+    let hello = &s[0..5];  // 0 is the starting index and 5 is the last index to slice
+    let world = &s[6..11]; // 6 is the starting index and 11 is the last index to slice
+
+    let slice = &s[..3];
+    let getLength = s.len();
+
+    // This both is equal if getting the whole string
+    let slice = &s[0..len];
+    let slice = &s[..];
+
+    let slice = &s[0..getLength]; // this is also valid since we get the length of the string
+
+    let intSlice = [1,2,3,4,5];
+
+    let slice = &intSlice[0..2]; // we can also slice using type i32
+
+    // &str - string slices
+    // using &str (string slice) it allows us to use the same function on both String and &str values.
+
+    fn first_word(s: &str) -> &str {
+        let bytes = s.as_bytes();
+        for (i, &item)v in bytes.iter().enumerate() {
+            if item == b' ' {
+                return i;
+            }
+        }
+
+        &s[..]
+    }
+
+
+    fn first_word(s: &String) -> usize {
+        let bytes = s.as_bytes();
+        for (i, &item)v in bytes.iter().enumerate() {
+            if item == b' ' {
+                return i;
+            }
+        }
+
+        s.len()
+    }
+
+
+
 }

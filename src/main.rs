@@ -17,18 +17,32 @@ fn func_name() {
     println!("{}", x);
 }
 
+#[allow(dead_code)]
 fn take_ownership(stra: i32) {
     println!("{}", stra);
 
 }
 
+
 fn main() {
 
-   let s = String::from("Hello");
-    let x = 10;
-   take_ownership(x);
+    let user1 = User {
+        email: String::from("someone@example.com"),
+        username: String::from("someusername123"),
+        active: true,
+        sign_in_count: 1,
+     };
 
-   println!("{}", x);
-    
+     
 
+     println!("{:?}", user1.username);
+}
+
+#[allow(dead_code)]
+#[derive(Debug)]
+struct User {
+    username: String,
+    email: String,
+    sign_in_count: u64,
+    active: bool,
 }

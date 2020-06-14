@@ -8,3 +8,5 @@ edition = "2018"
 
 [dependencies]
 winrt = { git = "https://github.com/microsoft/winrt-rs" }
+# including a exernal local libraries
+restaurant = { path = "restaurant" }

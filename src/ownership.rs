@@ -17,7 +17,7 @@
 
 // another example
 {
-    // instead of being called shallow copy, i'ts known as 'move'
+    // shallow copy, i'ts known as 'move'
 
     let s1 = String::from("Hello");
     // s1 still valid here
@@ -174,7 +174,7 @@
 
     // mutable reference
     fn change(some_string: &String) {
-        some_string.push_str(", add") // cannot be add because it is immutable while borrowing
+        some_string.push_str(", add") // can be add because it is mutable while borrowing
     }
 
     fn calculate_length(s: &String) -> usize {

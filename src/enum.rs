@@ -1,5 +1,4 @@
 
-
 fn main () {
 
     enum IpAddrKind{
@@ -14,12 +13,13 @@ fn main () {
         grade(u32),
         classroom(String, String),
         address {street: String, block: String, province: String }
+     
     }
 
     // Another usage for enum is using implementation block
     impl Student {
         fn call(&self) {
-            // define hee
+            // define here
         }
     }
 
@@ -99,7 +99,7 @@ let some_u8_value = 0u8;
         }
     }
         let five = Some(5);
-        let six = plus_one(five);w
-        let none = plus_one(None);􀁛
+        let six = plus_one(five);
+        let none = plus_one(None);
 
 }

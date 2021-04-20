@@ -17,7 +17,7 @@ struct User {
     active: bool,
 }
 
-// Here we create a function that return a 'User' instance with the give email and username
+// Here we create a function that return a 'User' instance with the given email and username
 // Don't use this kind of Field Init 
 fn build_user(email: String, username: String) -> User {
     User {

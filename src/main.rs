@@ -8,6 +8,7 @@ use std::io;
 // access loops.rs file which consists of functions
 mod loops;
 
+#[allow(unused_imports)]
 use std::collections::HashMap;
 
 #[allow(dead_code)]
@@ -48,6 +49,8 @@ enum Testaa {
 //     Some(T),
 //     None
 // }
+
+
 #[allow(dead_code)]
 enum Coin {
     Penny,
@@ -65,11 +68,11 @@ enum Coin {
 
         }
 
-
+        #[allow(dead_code)]
         fn value_in_cents(coin: Coin) -> u8 {
             match coin {
     
-                Coin::Penny => 1,
+                Coin::Penny => 1, 
                 Coin::Nickel => 5,
                 Coin::Dime => 10,
                 Coin::Quarter(state) => {
@@ -79,14 +82,21 @@ enum Coin {
             }
         }
 
+        
+use std::fs::File;
+use std::io::{ErrorKind};
 fn main() {
-
-    
-    let field_name = String::from("Favorite color");
-    let field_value = String::from("Blue");
-    let mut map = HashMap::new();
-    map.insert(field_name, field_value);
-    // field_name and field_value are invalid at this point, try using them and
-    // see what compiler error you get!
-    println!("{:?}", map);
+  
+    let f = File::open("hello.txt");
+    let f = match f {
+        Ok(file) => file,
+        Err(error) => match error.kind() {
+            ErrorKind::NotFound => match File::create("hello.txt") {
+                Ok(fc) => fc,
+                Err(e) => panic!("Problem creating the file: {:?}", e),
+            },
+         
+        other_error => panic!("Problem opening the file: {:?}", other_error),
+    },
+  };
 }

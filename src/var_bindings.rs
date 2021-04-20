@@ -9,8 +9,8 @@ fn var_bindings() {
     // u16 - unsigned 16-bit
     // u32 - unsigned 32-bit
     // u64 - unsigned 64-bit
-    // isize
-    // usize
+    // isize - signed size
+    // usize  - unsigned size
 
     
     // assign 5 to x

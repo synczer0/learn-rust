@@ -136,4 +136,7 @@ fn hashmap_collection() {
 
     }
 
+    let getme = String::from("Blue");
+    print("{}", scores.get(getme));
+
 }
